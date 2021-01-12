@@ -5,8 +5,9 @@
 Hashicorp's Packer is required to build this AMI, you can download it from the [Packer website](https://www.packer.io/downloads)
 Once you've got the binary, build the image with:
 
-```
-export subnet_id=subnet-02b30be5f19619199     # This subnet should be public accesible
+```shell
+$ export aws_region=us-west-2                   # This is the region where our AMI will be created
+$ export subnet_id=subnet-02b30be5f19619199     # This subnet should be public accesible in the selected region
 $ packer build template.json
 ```
 
@@ -14,7 +15,7 @@ $ packer build template.json
 
 Once packer finishes, the AMI should be available in our AWS account:
 
-```
+```shell
 $ aws ec2 describe-images --filters Name=name,Values=perfscale-fedora
 {
     "Images": [

@@ -2,7 +2,7 @@
   "variables": {
     "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
     "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
-    "region": "us-west-2",
+    "aws_region": "{{env `AWS_REGION`}}",
     "key_pair": "perfscale",
     "subnet_id": "{{env `SUBNET_ID`}}"
   },
@@ -12,7 +12,7 @@
       "ami_name": "perfscale-fedora",
       "access_key": "{{user `aws_access_key`}}",
       "secret_key": "{{user `aws_secret_key`}}",
-      "region": "{{user `region`}}",
+      "region": "{{user `aws_region`}}",
       "subnet_id": "{{ user `subnet_id`}}",
       "source_ami_filter": {
         "filters": {
