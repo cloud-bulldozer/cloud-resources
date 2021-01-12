@@ -29,6 +29,7 @@
       "temporary_key_pair_name": "packer-keypair-{{timestamp}}",
       "instance_type": "m5.large",
       "ami_description": "Perfscale Team Fedora based AMI",
+      "force_deregister": true,
       "ssh_username": "fedora",
       "tags": {
         "Name": "perfscale-fedora",
