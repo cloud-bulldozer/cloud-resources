@@ -6,8 +6,11 @@ Hashicorp's Packer is required to build this AMI, you can download it from the [
 Once you've got the binary, build the image with:
 
 ```
+export subnet_id=subnet-02b30be5f19619199     # This subnet should be public accesible
 $ packer build template.json
 ```
+
+> Note: By default, Packer will use the configured AWS credentials on your system (you can configre then using `aws configure`), you can overwrite them through the env vars `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
 
 Once packer finishes, the AMI should be available in our AWS account:
 

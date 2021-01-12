@@ -4,7 +4,7 @@
     "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
     "region": "us-west-2",
     "key_pair": "perfscale",
-    "subnet_id": "subnet-02b30be5f19619199"
+    "subnet_id": "{{env `SUBNET_ID`}}"
   },
   "builders": [
     {
