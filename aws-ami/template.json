@@ -1,0 +1,45 @@
+{
+  "variables": {
+    "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
+    "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+    "region": "us-west-2",
+    "key_pair": "perfscale",
+    "subnet_id": "subnet-02b30be5f19619199"
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "ami_name": "perfscale-fedora",
+      "access_key": "{{user `aws_access_key`}}",
+      "secret_key": "{{user `aws_secret_key`}}",
+      "region": "{{user `region`}}",
+      "subnet_id": "{{ user `subnet_id`}}",
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "architecture": "x86_64",
+          "name": "Fedora-Cloud-Base-32*",
+          "root-device-type": "ebs"
+        },
+        "owners": [
+          "125523088429"
+        ],
+        "most_recent": true
+      },
+      "temporary_key_pair_name": "packer-keypair-{{timestamp}}",
+      "instance_type": "m5.large",
+      "ami_description": "Perfscale Team Fedora based AMI",
+      "ssh_username": "fedora",
+      "tags": {
+        "Name": "perfscale-fedora",
+        "DO-NOT-DELETE": "true"
+      }
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "provision.sh"
+    }
+  ]
+}
